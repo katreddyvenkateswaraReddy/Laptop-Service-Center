@@ -1,246 +1,315 @@
 #include<iostream>
 #include<fstream>
 #include<string>
-#include<conio.h>
-#include<stdio.h>
-#include<stdlib.h>
 #include<windows.h>
+#include<limits> 
+
 using namespace std;
-fstream f1,f2;
-class customer;
+
+// Customer class for storing customer information and handling operations
 class customer
 {
-	public:
-	int cno,total;
-	string name;
-	string adress;
-	string cname;
-	int a,b,c,n,x;
-	float i;
-	public:
-		void give_details()
-		{
-			system("cls");
-			fflush(stdin);
-			cout<<"Enter Your Name :";
-			getline(cin,name);
-			cout<<"Enter your address:";
-			getline(cin,adress);
-			cout<<"Enter the name of your laptop:";
-			getline(cin,cname);
-			cout<<"Enter Your Id number -"<<endl;
-			cin>>cno;
-			
-		}
-		void display()
-		{
-			
-			cout<<"Name:"<<name;
-			cout<<endl<<"Address:"<<adress<<endl;
-			cout<<"Name of your laptop:"<<cname<<endl;
-			cout<<"Unique-Id:"<<cno;
-			cout<<endl<<"Plz remember this Id for further details!!";
-			
-		}
-		void damage()
-		{
-			 total=0;
-			cout<<"Enter the number of components which you want to get repaired :";
-			cin>>n;
-			for(int i=0;i<n;i++)
-			{
-				cout<<endl<<"Choose from the list:";
-				cout<<endl<<"1)display  2)Hard disk 3)Usb ports:";
-				cout<<endl<<"4)Graphic card  5)Mother board  6)Windows:";
-				cout<<endl<<"7)Keypad  8)Ram  9)Anti-Virus:"<<endl;		
-				cin>>x;	
-				switch(x)
-				{
-					case 1:
-						cout<<endl<<"Cost of display is 3000 Rs"<<endl;
-						total+=3000;
-						break;
-					case 2:
-						cout<<endl<<"cost of Hard disk is 4000 Rs"<<endl;
-						total+=4000;
-						break;
-					case 3:
-						cout<<endl<<"cost of Usb port is 500 Rs"<<endl;
-						total+=500;
-						break;
-					case 4:
-						cout<<endl<<"cost of Graphic card is 10000 Rs"<<endl;
-						total+=10000;
-						break;
-					case 5:
-						cout<<endl<<"cost of Mother board is 8000 Rs"<<endl;
-						total+=8000;
-						break;
-					case 6:
-						cout<<endl<<"cost of Windows is 3000 Rs"<<endl;
-						total+=3000;
-						break;
-					case 7:
-						cout<<endl<<"cost of key pad is 1200 Rs"<<endl;
-						total+=1200;
-						break;
-					case 8:
-						cout<<endl<<"cost of Ram is 1000 Rs"<<endl;
-						total+=1000;
-						break;	
-					case 9:
-						cout<<endl<<"cost of Anti-virus is 800 Rs"<<endl;
-						total+=800;
-						break;
-				}
-			}	
-		}
-		void bill()
-		{
-			cout<<endl<<"Your total bill to be paid  is:"<<total<<endl;
-		}
+public:
+    int cno, total; // Customer ID and total bill amount
+    string name; // Customer name
+    string address; // Customer address
+    string laptopName; // Name of the laptop
+    int n, x; // Variables for handling repair component selection
+
+public:
+    // Function to input customer details
+    void give_details()
+    {
+        system("cls");
+        fflush(stdin);
+        cout << "Enter Your Name: ";
+        getline(cin, name);
+        cout << "Enter Your Address: ";
+        getline(cin, address);
+        cout << "Enter the Name of Your Laptop: ";
+        getline(cin, laptopName);
+        cout << "Enter Your ID Number: ";
+        cin >> cno;
+    }
+
+    // Function to display customer details
+    void display()
+    {
+        cout << "Name: " << name << endl;
+        cout << "Address: " << address << endl;
+        cout << "Laptop Name: " << laptopName << endl;
+        cout << "Unique ID: " << cno << endl;
+        cout << "Please remember this ID for further details!" << endl;
+    }
+
+    // Function to calculate repair component cost
+    void damage()
+    {
+        total = 0;
+        cout << "Enter the number of components you want to get repaired: ";
+        cin >> n;
+
+        for (int i = 0; i < n; i++)
+        {
+            cout << endl << "Choose from the list:";
+            cout << endl << "1) Display  2) Hard disk  3) USB ports";
+            cout << endl << "4) Graphic card  5) Motherboard  6) Windows";
+            cout << endl << "7) Keypad  8) RAM  9) Anti-Virus" << endl;
+            cin >> x;
+
+            switch (x)
+            {
+                case 1:
+                    cout << "Cost of display: 3000 Rs" << endl;
+                    total += 3000;
+                    break;
+                case 2:
+                    cout << "Cost of hard disk: 4000 Rs" << endl;
+                    total += 4000;
+                    break;
+                case 3:
+                    cout << "Cost of USB port: 500 Rs" << endl;
+                    total += 500;
+                    break;
+                case 4:
+                    cout << "Cost of graphic card: 10000 Rs" << endl;
+                    total += 10000;
+                    break;
+                case 5:
+                    cout << "Cost of motherboard: 8000 Rs" << endl;
+                    total += 8000;
+                    break;
+                case 6:
+                    cout << "Cost of Windows: 3000 Rs" << endl;
+                    total += 3000;
+                    break;
+                case 7:
+                    cout << "Cost of keypad: 1200 Rs" << endl;
+                    total += 1200;
+                    break;
+                case 8:
+                    cout << "Cost of RAM: 1000 Rs" << endl;
+                    total += 1000;
+                    break;
+                case 9:
+                    cout << "Cost of anti-virus: 800 Rs" << endl;
+                    total += 800;
+                    break;
+            }
+        }
+    }
+
+    // Function to display the bill
+    void bill()
+    {
+        cout << "Your total bill to be paid is: " << total << " Rs" << endl;
+    }
 };
+
+// Function to simulate payment processing
 void pay()
 {
-	system("cls");
-	int i=0;
-	for(i=1;i<101;i++)
-	{
-		cout<<"Your payment is processing....."<<system("cls")<<i<<"%";
-		Sleep(100);
-	}
-	cout<<endl<<"Your bill is paid. Have a nice day!!!";
-	getch();
-}	
-main()
-{
-	while(1)
-	{
-		system("cls");
-		customer c1,c2,c,c3,c4;
-		char found='f';
-		char confirm='n';
-		int d;
-			cout<<"  \t\t\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
-			cout<<"\n\n\t\t\t*     1.NEW CUSTOMER              *";
-			cout<<"\n\n\t\t\t*     2.pay the bill              *";
-			cout<<"\n\n\t\t\t*     3.DELETE A RECORD           *";
-			cout<<"\n\n\t\t\t*     4.MODIFY A RECORD           *";
-			cout<<"\n\n\t\t\t*     5.DISPLAY RECORDS           *";
-			cout<<"\n\n\t\t\t*     0.EXIT                      *\n";
-			cout<<"\n\t\t\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
-			cout<<"\n\n\n\n\t Enter your choice :\t";
-			cin>>d;
-			switch(d)
-			{
-			case 0 :
-					exit(0);
-			case 1:
-					c1.give_details();
-					c1.damage();
-					char ch;
-					f1.open("Laptop_shop.txt",ios::binary | ios::out);
-					cout<<"\n\nDO you want to save the record(y/n)\t";
-					cin>>ch;
-					if(ch=='y')
-					{
-						f1.write((char*)&c1,sizeof(c1));
-					}
-					f1.close();
-					c1.bill();
-					cout<<"Do you want to pay now (y/n) :";
-					char ifelse;
-					cin>>ifelse;
-					if(ifelse='y')
-					{
-						pay();
-					}
-					else
-					{
-						break;
-					}
-					break;
-			case 2:
-				cout<<"Enter the amount to be paid:";
-				int temp;
-				cin>>temp;
-					pay();
-					break;
-			case 3:
-						f1.open("Laptop_shop.txt",ios::in);
-						f2.open("temp.txt",ios::out);
-						int rno;
-//						char found='f',confirm='n';
-						cout<<"\n\n Enter Customer ID you want to DELETE :";
-						cin>>rno;
-					while(!f1.eof())
-					{
-						f1.read((char*)&c3,sizeof(c3));
-						if(c3.cno==rno)
-							{
-								c3.display();
-								found='t';
-								cout<<"\n\n Are you sure want to DELETE this record ? (y/n)";
-								cin>>confirm;
-								if(confirm=='n')
-								f2.write((char*)&c,sizeof(c));
-							}
-					else
-						f2.write((char*)&c3,sizeof(c3));
-					}
-					if(found=='f')
-					cout<<"\n\n\tRECORD NOT FOUND\n";
-					f1.close();
-					f2.close();
-					remove("Laptop_shop.txt");
-					rename("temp.txt","Laptop_shop.txt");
-					f1.open("Laptop_shop.txt",ios::in);
-					cout<<"\n\n\n Now the file contains\n\n\n";
-					while(!f1.eof())
-					{
-						f1.read((char*)&c,sizeof(c));
-						if(f1.eof())
-						c.display();
-					}
-					f1.close();
-					
-					break;
-			case 4:
-					
-					f1.open("Laptop_shop.txt",ios::in | ios::out );
-//					int rno;
-					long pos;
-					
-					cout<<"\n\n Enter the Customer ID you want to MODIFY :\t";
-					cin>>rno;
-					while(!f1.eof())
-						{
-							pos=f1.tellg();
-							f1.read((char*)&c,sizeof(c));
-							if(c.cno==rno)
-								{
-									c.give_details();
-									f1.seekg(pos);
-									f1.write((char*)&c,sizeof(c));
-									found='t';
-							break;
-						}
-					}
-					break;
-			case 5:
-					f1.open("Laptop_shop.txt",ios::binary|ios::in);
-					while(!f1.eof())
-					{
-						f1.read((char*)&c2,sizeof(c2));
-						c2.display();
-						if(f1.eof())
-						{
-							cout<<"\n\nEnd of the file reached\n\n";
-						}
-					}
-						f1.close();
-						getch();
-					}
-				}
+    system("cls");
+    cout << "Your payment is processing..." << endl;
+    Sleep(2000); // Simulating payment processing time
+    cout << "Your bill is paid. Have a nice day!!!" << endl;
+    system("pause");
 }
 
+int main()
+{
+    while (true)
+    {
+        system("cls");
+        fstream f1, f2;
+        customer c1, c;
+        char found = 'f';
+        char confirm = 'n';
+        int choice;
+
+        // Menu for user options
+        cout << "\t\t\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+        cout << "\n\t\t\t*     1. NEW CUSTOMER              *" << endl;
+        cout << "\t\t\t*     2. PAY THE BILL              *" << endl;
+        cout << "\t\t\t*     3. DELETE A RECORD           *" << endl;
+        cout << "\t\t\t*     4. MODIFY A RECORD           *" << endl;
+        cout << "\t\t\t*     5. DISPLAY RECORDS           *" << endl;
+        cout << "\t\t\t*     0. EXIT                      *\n" << endl;
+        cout << "\t\t\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+        cout << "\n\t Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+            case 0:
+                exit(0);
+            case 1:
+                c1.give_details();
+                c1.damage();
+                char ch;
+                f1.open("Laptop_shop.txt", ios::app);
+                cout << "\n\nDo you want to save the record? (y/n): ";
+                cin >> ch;
+                if (ch == 'y' || ch == 'Y')
+                {
+                    f1 << "Name: " << c1.name << endl;
+                    f1 << "Address: " << c1.address << endl;
+                    f1 << "Laptop Name: " << c1.laptopName << endl;
+                    f1 << "Unique ID: " << c1.cno << endl;
+                    f1 << "Total Bill: " << c1.total << " Rs" << endl;
+                    f1 << "-----------------------------------------" << endl;
+                }
+                f1.close();
+                c1.bill();
+                cout << "Do you want to pay now? (y/n): ";
+                char ifelse;
+                cin >> ifelse;
+                if (ifelse == 'y' || ifelse == 'Y')
+                {
+                    pay();
+                }
+                break;
+            case 2:
+                cout << "Enter the amount to be paid: ";
+                int temp;
+                cin >> temp;
+                pay();
+                break;
+            case 3:
+                f1.open("Laptop_shop.txt", ios::in);
+                f2.open("temp.txt", ios::out);
+                int rno;
+                cout << "\n\nEnter the Customer ID you want to DELETE: ";
+                cin >> rno;
+
+                while (getline(f1, c.name))
+                {
+                    getline(f1, c.address);
+                    getline(f1, c.laptopName);
+                    f1 >> c.cno;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1 >> c.total;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                    if (c.cno == rno)
+                    {
+                        c.display();
+                        found = 't';
+                        cout << "\n\nAre you sure you want to DELETE this record? (y/n): ";
+                        cin >> confirm;
+                        if (confirm == 'n' || confirm == 'N')
+                        {
+                            f2 << "Name: " << c.name << endl;
+                            f2 << "Address: " << c.address << endl;
+                            f2 << "Laptop Name: " << c.laptopName << endl;
+                            f2 << "Unique ID: " << c.cno << endl;
+                            f2 << "Total Bill: " << c.total << " Rs" << endl;
+                            f2 << "-----------------------------------------" << endl;
+                        }
+                    }
+                    else
+                    {
+                        f2 << "Name: " << c.name << endl;
+                        f2 << "Address: " << c.address << endl;
+                        f2 << "Laptop Name: " << c.laptopName << endl;
+                        f2 << "Unique ID: " << c.cno << endl;
+                        f2 << "Total Bill: " << c.total << " Rs" << endl;
+                        f2 << "-----------------------------------------" << endl;
+                    }
+                }
+
+                if (found == 'f')
+                    cout << "\n\n\tRECORD NOT FOUND\n";
+                f1.close();
+                f2.close();
+                remove("Laptop_shop.txt");
+                rename("temp.txt", "Laptop_shop.txt");
+
+                f1.open("Laptop_shop.txt", ios::in);
+                cout << "\n\nNow the file contains:\n\n";
+                while (getline(f1, c.name))
+                {
+                    getline(f1, c.address);
+                    getline(f1, c.laptopName);
+                    f1 >> c.cno;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1 >> c.total;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    c.display();
+                    cout << endl;
+                }
+                f1.close();
+                system("pause");
+                break;
+            case 4:
+                f1.open("Laptop_shop.txt", ios::in | ios::out);
+                long pos;
+                cout << "\n\nEnter the Customer ID you want to MODIFY: ";
+                cin >> rno;
+                while (getline(f1, c.name))
+                {
+                    getline(f1, c.address);
+                    getline(f1, c.laptopName);
+                    f1 >> c.cno;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1 >> c.total;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                    if (c.cno == rno)
+                    {
+                        c.display();
+                        pos = f1.tellg();
+                        pos -= (c.name.length() + c.address.length() + c.laptopName.length() + 4);
+                        f1.seekp(pos, ios::beg);
+                        c.give_details();
+                        c.damage();
+                        f1 << "Name: " << c.name << endl;
+                        f1 << "Address: " << c.address << endl;
+                        f1 << "Laptop Name: " << c.laptopName << endl;
+                        f1 << "Unique ID: " << c.cno << endl;
+                        f1 << "Total Bill: " << c.total << " Rs" << endl;
+                        f1 << "-----------------------------------------" << endl;
+                        found = 't';
+                        break;
+                    }
+                }
+                if (found == 'f')
+                    cout << "\n\n\tRECORD NOT FOUND\n";
+                f1.close();
+                system("pause");
+                break;
+            case 5:
+                f1.open("Laptop_shop.txt", ios::in);
+                if (!f1)
+                {
+                    cout << "\n\n\tFILE NOT FOUND\n";
+                    system("pause");
+                    break;
+                }
+                cout << "\n\n\t\tDISPLAYING THE RECORDS\n";
+                while (getline(f1, c.name))
+                {
+                    getline(f1, c.address);
+                    getline(f1, c.laptopName);
+                    f1 >> c.cno;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1 >> c.total;
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    f1.ignore(numeric_limits<streamsize>::max(), '\n');
+                    c.display();
+                    cout << endl;
+                }
+                f1.close();
+                system("pause");
+                break;
+            default:
+                cout << "\nInvalid choice! Please try again." << endl;
+                system("pause");
+                break;
+        }
+    }
+    return 0;
+}
